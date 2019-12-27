@@ -11,6 +11,10 @@ usage: $(basename $0) zabbix_server_ip|proxy_ip
 EOF
 }
 
+if[ -z "${ServerIP}" ]; then
+    read -p "请输入zabbix server | proxy 的IP地址：" ServerIP
+fi
+
 check_ip() {
     IP=$1
     VALID_CHECK=$(echo $IP|awk -F. '$1<=255&&$2<=255&&$3<=255&&$4<=255{print "yes"}')

@@ -1,11 +1,17 @@
 #!/bin/bash
 # init zabbix_agent server_ip|proxy_ip
 
+ServerIP="${1}"
+
 usage() {
     cat <<EOF
 usage: $(basename $0) zabbix_server_ip|proxy_ip
 EOF
 }
+
+if[ -z "${ServerIP}" ]; then
+    read -p "请输入zabbix server | proxy 的IP地址：" ServerIP
+fi
 
 check_ip() {
     IP=$1
