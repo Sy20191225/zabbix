@@ -9,7 +9,7 @@ usage: $(basename $0) zabbix_server_ip|proxy_ip
 EOF
 }
 
-if[ -z "${ServerIP}" ]; then
+if [ -z "${ServerIP}" ]; then
     read -p "请输入zabbix server | proxy 的IP地址：" ServerIP
 fi
 
