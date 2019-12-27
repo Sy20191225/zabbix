@@ -6,7 +6,7 @@ INTERVAL=0;
 EXE_FALG=0;
 COMMAND_LINE='';
 
-FILE_PATH="./script/cron.d/"
+FILE_PATH="/srv/zabbix-agent/script/cron.d/"
 
 cd ${FILE_PATH} || exit 1;
 

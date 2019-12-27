@@ -5,8 +5,8 @@
 METRIC="${1}"
 PORT="${2:-27017}"
 
-source ./fun_check_stat_file.sh
-STAT_FILE="../var/mongodblog${PORT}.stats"
+source /srv/zabbix-agent/script/fun_check_stat_file.sh
+STAT_FILE="/srv/zabbix-agent/var/mongodblog${PORT}.stats"
 
 CHECK_STAT_FILE_FLAG=`fun_check_stat_file ${STAT_FILE} 300`;
 

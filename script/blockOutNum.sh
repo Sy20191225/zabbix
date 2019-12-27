@@ -7,8 +7,8 @@ TYPE=$1
 C_NAME=$2
 NUM=$3
 
-source ./fun_check_stat_file.sh
-bon_file="../var/blockOutNum.stats"
+source /srv/zabbix-agent/script/fun_check_stat_file.sh
+bon_file="/srv/zabbix-agent/var/blockOutNum.stats"
 
 is_process() {
     pronum=$(ps -ef|grep "produce.sh"|grep -v "grep"|wc -l)

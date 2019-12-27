@@ -17,7 +17,7 @@
 #{#metabase_COMMAND}
 #{#metabase_WRITE}
 
-source ./fun_check_stat_file.sh
+source /srv/zabbix-agent/script/fun_check_stat_file.sh
 
 DATABASE="$1"
 METRIC="$2"
@@ -25,7 +25,7 @@ TYPE="$3"
 PORT="${4:-27017}"
 
 
-STAT_FILE="../var/mongodblog${PORT}.stats"
+STAT_FILE="/srv/zabbix-agent/var/mongodblog${PORT}.stats"
 
 CHECK_STAT_FILE_FLAG=`fun_check_stat_file ${STAT_FILE} 300`;
 

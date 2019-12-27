@@ -5,14 +5,14 @@
 #参数2:日志信息所属分类，COMMAND WRITE | {#METRIC_NAME}
 #参数3:MongoDB服务端口，默认27017
 
-source ./fun_check_stat_file.sh
+source /srv/zabbix-agent/script/fun_check_stat_file.sh
 
 DATABASE="$1"
 METRIC="$2"
 PORT="${3:-27017}"
 
 
-STAT_FILE="../var/mongodblog${PORT}.stats"
+STAT_FILE="/srv/zabbix-agent/var/mongodblog${PORT}.stats"
 
 CHECK_STAT_FILE_FLAG=`fun_check_stat_file ${STAT_FILE} 300`;
 
@@ -22,12 +22,12 @@ fi;
 
 #command 类别的总数
 command_total() {
-    echo "${grep ${METRIC} ${STAT_FILE}|grep -v "MongoDB Shell"|awk -vtype="command" '$5==type'|awk -F '[. ]' -vdataname="${DATABASE}" '$8==dataname'|wc -l}"
+	echo "$(grep ${METRIC} ${STAT_FILE}|grep -v "MongoDB Shell"|awk -vtype="command" '$5==type'|awk -F '[. ]' -vdataname="${DATABASE}" '$8==dataname'|wc -l)"
 }
 
 #write 类别的总数
 write_total() {
-    echo "${grep ${METRIC} ${STAT_FILE}|grep -v "MongoDB Shell"|awk -F '[. ]' -vdataname="${DATABASE}" '$10==dataname'|wc -l}"
+	echo "$(grep ${METRIC} ${STAT_FILE}|grep -v "MongoDB Shell"|awk -F '[. ]' -vdataname="${DATABASE}" '$10==dataname'|wc -l)"
 }
 
 case ${METRIC} in
