@@ -60,5 +60,5 @@ unzip -q zabbix-agent.zip
 mv zabbix-agent-master zabbix-agent
 chown -R zabbix:zabbix /srv/zabbix-agent
 cd /srv/zabbix-agent
-/bin/sh /srv/zabbix-agent/env-setup.agent $IP
+/bin/sh /srv/zabbix-agent/env-setup.agent $ServerIP
 rm -f /srv/zabbix-agent.zip

@@ -122,10 +122,12 @@ zbx_config() {
 
 is_enable() {
     echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 正在检查zabbix-agent服务是否自启动...\033[0m"
-    zbx_enb=$(systemctl list-unit-files|grep enable|grep zabbix-agent|wc -l)
+#    zbx_enb=$(systemctl list-unit-files|grep enable|grep zabbix-agent|wc -l)
+    zbx_enb=$(grep "/srv/zabbix-agent/init.agent" /etc/rc.d/rc.local|wc -l)
     if [ ${zbx_enb} -eq 0 ]; then
         echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 正在增加zabbix-agent服务自启动...\033[0m"
-        systemctl enable zabbix-agent.service
+        echo "/srv/zabbix-agent/init.agent start" >> /etc/rc.d/rc.local
+        chmod +x /etc/rc.d/rc.local
     else
         echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") zabbix-agent服务已设置自启动...\033[0m"
     fi;
