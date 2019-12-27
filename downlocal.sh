@@ -49,7 +49,7 @@ yumserver() {
 }
 
 if [ -d "/srv/zabbix-agent" ]; then
-    rn -rf /srv/zabbix-agent
+    rm -rf /srv/zabbix-agent
 fi;
 
 yumserver
