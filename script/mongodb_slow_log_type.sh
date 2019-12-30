@@ -3,19 +3,8 @@
 #sh mongodb_slow_log_type.sh DATABASE COMMAND|WRITE PORT
 #参数1:数据库名称，yotta metabase
 #参数2:日志信息所属分类，COMMAND WRITE
-#参数3:MongoDB服务端口，默认27017
-
-#$1
-#{#DATABASE_NAME}
-
-#$2
-#{#METRIC_NAME}
-
-#$3
-#{#yotta_COMMAND}
-#{#yotta_WRITE}
-#{#metabase_COMMAND}
-#{#metabase_WRITE}
+#参数3:日志信息类型，{#COMMAND_NAME} {#WRITE_NAME}
+#参数4:MongoDB服务端口，默认27017
 
 source /srv/zabbix-agent/script/fun_check_stat_file.sh
 
@@ -23,7 +12,6 @@ DATABASE="$1"
 METRIC="$2"
 TYPE="$3"
 PORT="${4:-27017}"
-
 
 STAT_FILE="/srv/zabbix-agent/var/mongodblog${PORT}.stats"
 

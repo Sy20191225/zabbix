@@ -1,8 +1,8 @@
 #!/bin/bash
 #usage:
 #sh mongodb_slow_log_total.sh DATABASE COMMAND|WRITE PORT
-#参数1:数据库名称，yotta metabase | {#DATABASE_NAME}
-#参数2:日志信息所属分类，COMMAND WRITE | {#METRIC_NAME}
+#参数1:数据库名称，yotta metabase
+#参数2:日志信息所属分类，COMMAND WRITE
 #参数3:MongoDB服务端口，默认27017
 
 source /srv/zabbix-agent/script/fun_check_stat_file.sh
@@ -10,7 +10,6 @@ source /srv/zabbix-agent/script/fun_check_stat_file.sh
 DATABASE="$1"
 METRIC="$2"
 PORT="${3:-27017}"
-
 
 STAT_FILE="/srv/zabbix-agent/var/mongodblog${PORT}.stats"
 
@@ -42,10 +41,3 @@ case ${METRIC} in
     *)
     exit 1
 esac
-
-
-
-
-
-
-
