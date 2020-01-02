@@ -39,26 +39,24 @@ is_root() {
 is_root || { echo "only root can init env! Abort."; exit 1; }
 
 yumserver() {
-    yum -y update >/dev/null 2>&1
-    yum install -y git epel-release vim sysstat telnet \
-                   curl wget salt-minion ntpdate gcc \
-      		       gcc-c++ autoconf automake zlib \
-      		       zlib-devel openssl openssl-devel \
-      		       pcre pcre-devel net-snmp-devel \
-      		       libevent-devel unzip zip >/dev/null 2>&1
+    yum install -y git wget unzip zip >/dev/null 2>&1
 }
 
 if [ -d "/srv/zabbix-agent" ]; then
     rm -rf /srv/zabbix-agent
 fi;
 
+echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 检查系统是否安装git wget unzip zip包...\033[0m"
 yumserver
 
 cd /srv
+echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 正在下载zabbix-agent服务包...\033[0m"
 wget https://github.com/Sy20191225/zabbix-agent/archive/master.zip -O zabbix-agent.zip -q
 unzip -q zabbix-agent.zip
 mv zabbix-agent-master zabbix-agent
 chown -R zabbix:zabbix /srv/zabbix-agent
 cd /srv/zabbix-agent
+echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 正在执行初始化脚本env-setup.agent $ServerIP...\033[0m"
 /bin/sh /srv/zabbix-agent/env-setup.agent $ServerIP
+echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 正在删除zabbix-agent.zip压缩包...\033[0m"
 rm -f /srv/zabbix-agent.zip
