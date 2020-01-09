@@ -19,22 +19,22 @@ fi;
 case ${METRIC} in
     opcountersRepl)
     if [ ${METHOD} = "insert" ];then
-        cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "insert"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "insert"|awk '{print $3}'|sed 's/,//'
 
     elif [ ${METHOD} = "query" ];then
-        cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "query"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "query"|awk '{print $3}'|sed 's/,//'
 
     elif [ ${METHOD} = "update" ];then
-        cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "update"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "update"|awk '{print $3}'|sed 's/,//'
         
     elif [ ${METHOD} = "delete" ];then
-        cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "delete"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "delete"|awk '{print $3}'|sed 's/,//'
         
     elif [ ${METHOD} = "getmore" ];then
-        cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "getmore"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "getmore"|awk '{print $3}'|sed 's/,//'
         
     elif [ ${METHOD} = "command" ];then
-        cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "command"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 7 "opcountersRepl"|grep "command"|awk '{print $3}'|sed 's/,//'
         
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -45,13 +45,13 @@ t 1
     
     connections)
     if [ ${METHOD} = "current" ];then
-        cat ${STAT_FILE}|grep -A 5 "connections"|grep "current"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 5 "connections"|grep "current"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "available" ];then
-        cat ${STAT_FILE}|grep -A 5 "connections"|grep "available"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 5 "connections"|grep "available"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "totalCreated" ];then
-        cat ${STAT_FILE}|grep -A 5 "connections"|grep "totalCreated"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 5 "connections"|grep "totalCreated"|awk '{print $3}'|sed 's/,//'
     
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -62,13 +62,13 @@ t 1
     
     activeClients)
     if [ ${METHOD} = "total" ];then
-        cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "activeClients"|grep "total"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "activeClients"|grep "total"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "readers" ];then
-        cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "activeClients"|grep "readers"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "activeClients"|grep "readers"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "writers" ];then
-        cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "activeClients"|grep "writers"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "activeClients"|grep "writers"|awk '{print $3}'|sed 's/,//'
     
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -79,7 +79,7 @@ t 1
     
     globalLock)
     if [ ${METHOD} = "totalTime" ];then
-        cat ${STAT_FILE}|grep -A 12 "globalLock"|grep "totalTime"|awk '{print $3}'|awk -F '"' '{print $2}'
+        eval cat ${STAT_FILE}|grep -A 12 "globalLock"|grep "totalTime"|awk '{print $3}'|awk -F '"' '{print $2}'
     
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -90,16 +90,16 @@ t 1
     
     document)
     if [ ${METHOD} = "deleted" ];then
-        cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "deleted"|awk -F '(' '{print $2}'|sed 's/),//'
+        eval cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "deleted"|awk -F '(' '{print $2}'|sed 's/),//'
         
     elif [ ${METHOD} = "inserted" ];then
-        cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "inserted"|awk -F '(' '{print $2}'|sed 's/),//'
+        eval cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "inserted"|awk -F '(' '{print $2}'|sed 's/),//'
         
     elif [ ${METHOD} = "returned" ];then
-        cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "returned"|awk -F '(' '{print $2}'|sed 's/),//'
+        eval cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "returned"|awk -F '(' '{print $2}'|sed 's/),//'
         
     elif [ ${METHOD} = "updated" ];then
-        cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "updated"|awk -F '(' '{print $2}'|sed 's/),//'
+        eval cat ${STAT_FILE}|grep -A 300 "metrics"|grep -A 5 "document"|grep "updated"|awk -F '(' '{print $2}'|sed 's/),//'
         
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -110,13 +110,13 @@ t 1
     
     network)
     if [ ${METHOD} = "bytesIn" ];then
-        cat ${STAT_FILE}|grep -w -A 6 "network"|grep "bytesIn"|awk -F'"' '{print $4}'
+        eval cat ${STAT_FILE}|grep -w -A 6 "network"|grep "bytesIn"|awk -F'"' '{print $4}'
     
     elif [ ${METHOD} = "bytesOut" ];then
-        cat ${STAT_FILE}|grep -w -A 6 "network"|grep "bytesOut"|awk -F'"' '{print $4}'
+        eval cat ${STAT_FILE}|grep -w -A 6 "network"|grep "bytesOut"|awk -F'"' '{print $4}'
     
     elif [ ${METHOD} = "numRequests" ];then
-        cat ${STAT_FILE}|grep -w -A 6 "network"|grep "numRequests"|awk -F'(' '{print $2}'|sed 's/),//'
+        eval cat ${STAT_FILE}|grep -w -A 6 "network"|grep "numRequests"|awk -F'(' '{print $2}'|sed 's/),//'
     
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -127,16 +127,16 @@ t 1
     
     mem)
     if [ ${METHOD} = "mapped" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "mapped"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "mapped"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "mappedWithJournal" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "mappedWithJournal"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "mappedWithJournal"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "virtual" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "virtual"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "virtual"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "resident" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "resident"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "mem"|grep -w "resident"|awk '{print $3}'|sed 's/,//'
     
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -147,22 +147,22 @@ t 1
     
     opcounters)
     if [ ${METHOD} = "insert" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "insert"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "insert"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "query" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "query"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "query"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "update" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "update"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "update"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "delete" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "delete"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "delete"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "getmore" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "getmore"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "getmore"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "command" ];then
-        cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "command"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -w -A 7 "opcounters"|grep "command"|awk '{print $3}'|sed 's/,//'
     
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"
@@ -173,13 +173,13 @@ t 1
     
     currentQueue)
     if [ ${METHOD} = "total" ];then
-        cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "currentQueue"|grep "total"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "currentQueue"|grep "total"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "readers" ];then
-        cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "currentQueue"|grep "readers"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "currentQueue"|grep "readers"|awk '{print $3}'|sed 's/,//'
     
     elif [ ${METHOD} = "writers" ];then
-        cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "currentQueue"|grep "writers"|awk '{print $3}'|sed 's/,//'
+        eval cat ${STAT_FILE}|grep -A 12 "globalLock"|grep -A 4 "currentQueue"|grep "writers"|awk '{print $3}'|sed 's/,//'
     
     else
         echo -e "\033[33msh mongodb_stats.sh <METRIC> <METHOD> <PORT>\033[0m"

@@ -92,6 +92,7 @@ is_user() {
     else
         echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 系统已创建zabbix用户...\033[0m"
     fi;
+    chown -R zabbix:zabbix /srv/zabbix-agent
 }
 
 zbx_server() {

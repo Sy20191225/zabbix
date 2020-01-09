@@ -54,7 +54,7 @@ echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 正在下载zabbix-agent服�
 wget https://github.com/Sy20191225/zabbix-agent/archive/master.zip -O zabbix-agent.zip -q
 unzip -q zabbix-agent.zip
 mv zabbix-agent-master zabbix-agent
-chown -R zabbix:zabbix /srv/zabbix-agent
+#chown -R zabbix:zabbix /srv/zabbix-agent
 cd /srv/zabbix-agent
 echo -e "\033[38m --- $(date "+%Y-%m-%d %H:%M:%S") 正在执行初始化脚本env-setup.agent $ServerIP...\033[0m"
 /bin/sh /srv/zabbix-agent/env-setup.agent $ServerIP
