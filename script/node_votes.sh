@@ -6,29 +6,25 @@
 node_votes=( $(/app/bp/nodeos/cleos -u http://127.0.0.1:7000/ get table eosio eosio prodslevel |grep total_votes |awk -F'[".]' '{print $4}') )
 
 m_node() {
-    for (( i=0;i<21;i++))
-    do
-        if [ ${node_votes[$i]} -lt 50000000000 ]; then
-            status=0
-            break;
-        else
-            status=1
-        fi
-    done
-    echo "${status}"
+num=0
+for (( i=0;i<21;i++))
+do
+    if [ ${node_votes[$i]} -lt 50000000000 ]; then
+        num++;
+    fi;
+done
+echo "${num}"
 }
 
 b_node() {
-    for (( i=21;i<${#node_votes[@]};i++))
-    do
-        if [ ${node_votes[$i]} -lt 20000000000 ]; then
-            status=0
-            break;
-       else
-            status=1
-       fi
-    done
-    echo "${status}"
+num=0
+for (( i=21;i<${#node_votes[@]};i++))
+do
+    if [ ${node_votes[$i]} -lt 20000000000 ]; then
+        num++;
+    fi;
+done
+echo "${num}"
 }
 
 case $1 in
